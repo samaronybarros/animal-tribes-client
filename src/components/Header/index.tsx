@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { StyledNavbar, Logo } from './styles'
 import { NavItem, Icon } from 'react-materialize'
-import { HOME, LOGIN, SIGNUP } from 'src/routes/pages'
+import { HOME, LOGIN, PROFILE, SIGNUP } from 'src/routes/pages'
 
 interface HeaderProps {
   authenticated?: boolean
@@ -15,12 +15,8 @@ export const Header: FC<HeaderProps> = ({
   return (
     <StyledNavbar
       alignLinks="right"
-      brand={
-        <Logo className="brand-logo" href="/">
-          Animal Tribes
-        </Logo>
-      }
-      id="mobile-nav"
+      brand={<Logo href={authenticated ? PROFILE : HOME}>Animal Tribes</Logo>}
+      id="logo"
       menuIcon={<Icon>menu</Icon>}
       options={{
         draggable: true,
