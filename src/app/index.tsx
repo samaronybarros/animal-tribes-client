@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import ApolloClient from 'apollo-boost'
+import { ApolloProvider } from '@apollo/react-hooks'
+import Routes from 'src/routes'
+import config from 'src/config'
+
+const client = new ApolloClient({
+  uri: config.baseUrl,
+  request: async (operation) => {
+    const token = window.localStorage.getItem('token')
+    operation.setContext({
+      headers: {
+        Authorization: token || '',
+      },
+    })
+  },
+})
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ApolloProvider client={client}>
+      <Routes />
+    </ApolloProvider>
+  )
 }
 
-export default App;
+export default App
