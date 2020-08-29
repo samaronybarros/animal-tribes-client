@@ -43,6 +43,7 @@ export const Footer = (): JSX.Element => {
           href="https://itnext.io/animal-tribes-how-to-create-your-first-full-stack-typescript-graphql-application-76786e5520ed"
           style={{ color: 'white', fontWeight: 'bold' }}
           target="_blank"
+          rel="noopener noreferrer"
         >
           here
         </a>
